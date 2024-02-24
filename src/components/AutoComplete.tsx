@@ -3,6 +3,8 @@ import { observer } from 'mobx-react';
 import { nanoid } from 'nanoid';
 import { useDebounce } from "../utils/helpers";
 import AutoCompleteViewModel from '../viewmodels/AutoCompleteViewModel';
+import Flag from "./Flag";
+import '../styles/autocomplete.css';
 
 type AutoCompleteProps = {
   viewModel: AutoCompleteViewModel,
@@ -11,6 +13,7 @@ type AutoCompleteProps = {
 export default observer(({ viewModel } : AutoCompleteProps) => {
   const [searchText, setSearchText] = useState<string>('');
   const [isOpen, setIsOpen] = useState(false);
+  const [inputFocus, setInputFocus] = useState(false);
   const rootRef = useRef<HTMLInputElement>(null);
 
   const debouncedSearchRequest = useDebounce((value) => {
@@ -24,6 +27,14 @@ export default observer(({ viewModel } : AutoCompleteProps) => {
 
   function handleSelectCountry(searchValue: string) {
     setSearchText(searchValue);
+  }
+
+  function handleInputFocus() {
+    setInputFocus(true);
+  }
+
+  function handleInputBlurFocus() {
+    setInputFocus(false);
   }
 
   useEffect(() => {
@@ -50,14 +61,38 @@ export default observer(({ viewModel } : AutoCompleteProps) => {
 
   return (
     <div className="autocomplete-container">
-      <input type="text" ref={rootRef} value={searchText} onInput={handleInputChange} />
+      <div className={inputFocus ? 'input-container-focused' : 'input-container-none-focused'}>
+        <input
+          type="text"
+          ref={rootRef}
+          value={searchText}
+          className="input-ctrl"
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlurFocus}
+          onInput={handleInputChange}
+        />
+        {viewModel.isLoading && <span className="loading"></span>}
+      </div>
       <div className="prompt-container">
         {isOpen && (
-          <ol className="prompt-list">
+          <ul className="prompt-list">
             {viewModel.searchResult.map(item =>
-              <li key={nanoid()} onClick={() => handleSelectCountry(item.name)}>{item.name}</li>
+              <li
+                key={item.id}
+                className="prompt-item"
+                onClick={() => handleSelectCountry(item.name)}
+              >
+                <div className="prompt-flag-container">
+                  <Flag src={item.flag} />
+                </div>
+                <div className="prompt-text">
+                  <span>{item.name}</span>
+                  <span>{item.fullName}</span>
+                </div>
+
+              </li>
             )}
-          </ol>
+          </ul>
         )}
       </div>
     </div>

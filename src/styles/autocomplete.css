@@ -1,7 +1,47 @@
 .autocomplete-container {
   display: flex;
   flex-direction: column;
+  width: 400px;
 }
+
+.input-container,
+.input-container-focused,
+.input-container-none-focused {
+  display: flex;
+  align-items: center;
+  padding: 7px;
+  width: 100%;
+}
+
+.input-container-focused {
+  border: 1px solid #3cabdb;
+  border-radius: 5px;
+}
+
+.input-container-none-focused {
+  border: 1px solid #D3D3D3;
+  border-radius: 5px;
+}
+
+.loading {
+  display: inline-block;
+  margin-left: 5px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid rgb(191 191 191 / 30%);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+
 
 .prompt-container {
   width: 100%;
@@ -13,4 +53,28 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.prompt-list {
+  list-style: none;
+  border: 1px solid #D3D3D3;
+  border-radius: 5px;
+  margin: 0;
+  padding: 0;
+}
+
+.input-ctrl {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.prompt-item {
+  padding: 10px;
+  display: flex;
+}
+
+.prompt-text {
+  display: flex;
+  flex-direction: column;
 }
