@@ -5,6 +5,7 @@ import { useDebounce } from "../utils/helpers";
 import AutoCompleteViewModel from '../viewmodels/AutoCompleteViewModel';
 import Flag from "./Flag";
 import '../styles/autocomplete.css';
+import {log} from "util";
 
 type AutoCompleteProps = {
   viewModel: AutoCompleteViewModel,
@@ -39,7 +40,10 @@ export default observer(({ viewModel } : AutoCompleteProps) => {
 
   useEffect(() => {
     if (viewModel.searchResult.length) {
+      console.log('-> viewModel.searchResult ', viewModel.searchResult);
       setIsOpen(true);
+    } else {
+      setIsOpen(false);
     }
   }, [viewModel.searchResult])
 
@@ -58,7 +62,7 @@ export default observer(({ viewModel } : AutoCompleteProps) => {
       window.removeEventListener('click', handleClick);
     };
   }, []);
-
+  console.log('-> isOpen ', isOpen);
   return (
     <div className="autocomplete-container">
       <div className={inputFocus ? 'input-container-focused' : 'input-container-none-focused'}>
@@ -82,14 +86,11 @@ export default observer(({ viewModel } : AutoCompleteProps) => {
                 className="prompt-item"
                 onClick={() => handleSelectCountry(item.name)}
               >
-                <div className="prompt-flag-container">
-                  <Flag src={item.flag} />
-                </div>
+                <Flag src={item.flag} />
                 <div className="prompt-text">
-                  <span>{item.name}</span>
-                  <span>{item.fullName}</span>
+                  <span className="prompt-text-name">{item.name}</span>
+                  <span className="prompt-text-full-name">{item.fullName}</span>
                 </div>
-
               </li>
             )}
           </ul>

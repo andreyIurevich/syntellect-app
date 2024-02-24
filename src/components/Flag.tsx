@@ -17,7 +17,7 @@ const Flag: React.FC<FlagProps> = React.memo(({ src }) => {
 
   return (
     <div className="flag-container">
-      <img className="country-flag" src={imgSrc} onError={handleError} alt="Флаг страны" />
+      <img className="country-flag" src={imgSrc} onError={handleError} />
     </div>
   );
 });
