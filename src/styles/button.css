@@ -1,0 +1,13 @@
+.button-ctrl {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  background-color: #167ffc;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.button-ctrl:active {
+  box-shadow: none;
+}

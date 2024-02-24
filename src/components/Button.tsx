@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/button.css';
 
 type ButtonProps = {
   value: string,
@@ -6,7 +7,7 @@ type ButtonProps = {
 }
 
 const Button = ({ value, callback }: ButtonProps) => {
-  return <button onClick={callback}>{value}</button>
+  return <button className="button-ctrl" onClick={callback}>{value}</button>
 }
 
 export default Button;

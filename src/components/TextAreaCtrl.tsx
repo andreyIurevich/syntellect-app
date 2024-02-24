@@ -20,7 +20,7 @@ const TextAreaCtrl = (props: TextAreaProps) => {
           {props.leftSide.map(item => item)}
         </div>
       )}
-      <textarea rows={7} value={props.value} onChange={props.onChange} />
+      <textarea className="textarea-ctrl" rows={7} value={props.value} onChange={props.onChange} />
       {props.rightSide && (
         <div className="btn-side-container-right">
           {props.rightSide.map(item => item)}

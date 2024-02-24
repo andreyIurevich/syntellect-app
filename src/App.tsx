@@ -13,9 +13,18 @@ function App() {
 
   return (
     <main>
-      <TextControl viewModel={textAreaCtrlViewModelLeftRight} />
-      <TextControl viewModel={textAreaCtrlViewModelLeft} />
-      <AutoComplete viewModel={autoComplete} />
+      <section className="app-section">
+        <h3>Контрол с 1 кнопкой справа и 1 кнопкой слева</h3>
+        <TextControl viewModel={textAreaCtrlViewModelLeftRight} />
+      </section>
+      <section className="app-section">
+        <h3>Контрол с 2 кнопками справа</h3>
+        <TextControl viewModel={textAreaCtrlViewModelLeft} />
+      </section>
+      <section className="app-section">
+        <h3>Контрол-автокомплит</h3>
+        <AutoComplete viewModel={autoComplete} />
+      </section>
     </main>
   );
 }

@@ -1,23 +1,33 @@
 .ctrl-container {
-    display: flex;
+  display: flex;
 }
 
 .btn-side-container,
 .btn-side-container-left,
 .btn-side-container-right {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .btn-side-container-left > button,
 .btn-side-container-right > button {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .btn-side-container-left {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .btn-side-container-right {
-    margin-left: 10px;
+  margin-left: 10px;
+}
+
+.textarea-ctrl {
+  border-color: #D3D3D3;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.textarea-ctrl:focus {
+  outline-color: #3cabdb;
 }
