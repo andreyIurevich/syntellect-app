@@ -1,0 +1,23 @@
+.ctrl-container {
+    display: flex;
+}
+
+.btn-side-container,
+.btn-side-container-left,
+.btn-side-container-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-side-container-left > button,
+.btn-side-container-right > button {
+    margin-bottom: 10px;
+}
+
+.btn-side-container-left {
+    margin-right: 10px;
+}
+
+.btn-side-container-right {
+    margin-left: 10px;
+}
