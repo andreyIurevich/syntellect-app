@@ -68,6 +68,11 @@
 .prompt-item {
   padding: 10px;
   display: flex;
+  cursor: pointer;
+}
+
+.prompt-item:hover {
+  background-color: #f5f5f5;
 }
 
 .prompt-text {

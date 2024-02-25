@@ -1,10 +1,7 @@
-import { getCountryByName, CountryInfo } from '../api/apiService';
+import { getCountryByName } from '../services/apiService';
 import { makeAutoObservable, runInAction } from 'mobx';
 import { nanoid } from 'nanoid';
-
-interface ICountryInfo extends CountryInfo {
-  id: string,
-}
+import { CountryInfoBase, CountryInfo } from '../services/serverResponseInterface';
 
 export default class AutoCompleteViewModel {
   constructor(public maxPromptLength: number) {
@@ -13,10 +10,10 @@ export default class AutoCompleteViewModel {
   }
 
   public isLoading: boolean = false;
-  public searchResult: Array<ICountryInfo> = [];
+  public searchResult: Array<CountryInfo> = [];
 
-  private removeDuplicates(countries: Array<CountryInfo>): Array<ICountryInfo> {
-    return countries.reduce((acc: Array<ICountryInfo>, currentValue: CountryInfo) => {
+  private removeDuplicates(countries: Array<CountryInfoBase>): Array<CountryInfo> {
+    return countries.reduce((acc: Array<CountryInfo>, currentValue: CountryInfoBase) => {
       const callBack = (item: CountryInfo) => item.name === currentValue.name ||
         item.fullName === currentValue.fullName;
       const hasSamePrompt = acc.some(callBack);
@@ -26,16 +23,16 @@ export default class AutoCompleteViewModel {
       }
 
       return acc;
-    }, [] as ICountryInfo[]);
+    }, [] as CountryInfo[]);
   }
 
-  private applyPromptLength(countries: Array<CountryInfo>): Array<CountryInfo> {
+  private applyPromptLength(countries: Array<CountryInfoBase>): Array<CountryInfoBase> {
     return countries.length > this.maxPromptLength ?
       countries.slice(0, this.maxPromptLength) :
       countries;
   }
 
-  private convertSearchResult(countries: Array<CountryInfo>) {
+  private convertSearchResult(countries: Array<CountryInfoBase>) {
     return this.removeDuplicates(this.applyPromptLength(countries));
   }
 
@@ -47,11 +44,14 @@ export default class AutoCompleteViewModel {
       const response = await getCountryByName(searchText);
 
       runInAction(() => {
-        this.searchResult = this.convertSearchResult(response as Array<CountryInfo>);
+        this.searchResult = this.convertSearchResult(response as Array<CountryInfoBase>);
         this.isLoading = false;
       });
     } catch (err) {
-      console.log('-> error ', err);
+      runInAction(() => {
+        this.isLoading = false;
+        this.searchResult = [];
+      });
     }
   }
 }

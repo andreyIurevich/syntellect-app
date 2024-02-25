@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
-import { nanoid } from 'nanoid';
 import { useDebounce } from "../utils/helpers";
 import AutoCompleteViewModel from '../viewmodels/AutoCompleteViewModel';
 import Flag from "./Flag";
 import '../styles/autocomplete.css';
-import {log} from "util";
 
 type AutoCompleteProps = {
   viewModel: AutoCompleteViewModel,
@@ -40,7 +38,6 @@ export default observer(({ viewModel } : AutoCompleteProps) => {
 
   useEffect(() => {
     if (viewModel.searchResult.length) {
-      console.log('-> viewModel.searchResult ', viewModel.searchResult);
       setIsOpen(true);
     } else {
       setIsOpen(false);
@@ -62,7 +59,7 @@ export default observer(({ viewModel } : AutoCompleteProps) => {
       window.removeEventListener('click', handleClick);
     };
   }, []);
-  console.log('-> isOpen ', isOpen);
+
   return (
     <div className="autocomplete-container">
       <div className={inputFocus ? 'input-container-focused' : 'input-container-none-focused'}>

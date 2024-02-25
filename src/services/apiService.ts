@@ -1,13 +1,7 @@
 import countries from "./countries.json";
-import {log} from "util";
+import { CountryInfoBase } from "./serverResponseInterface";
 
-export interface CountryInfo {
-  name: string;
-  fullName: string;
-  flag: string;
-}
-
-export function getCountryByName(countryName: string): Promise<CountryInfo[]> {
+export function getCountryByName(countryName: string): Promise<CountryInfoBase[]> {
   return new Promise((resolve) => {
     setTimeout(resolve, getRandom(100, 800));
   }).then(() => {
