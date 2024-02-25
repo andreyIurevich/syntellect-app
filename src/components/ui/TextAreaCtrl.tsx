@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import '../styles/textAreaCtrl.css';
+import '../../styles/textAreaCtrl.css';
 
 type TextAreaProps = {
   rightSide?: Array<React.ReactElement<{

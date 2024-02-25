@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
-import { useDebounce } from "../utils/helpers";
-import AutoCompleteViewModel from '../viewmodels/AutoCompleteViewModel';
-import Flag from "./Flag";
-import '../styles/autocomplete.css';
+import { useDebounce } from "../../utils/helpers";
+import AutoCompleteViewModel from '../../viewmodels/AutoCompleteViewModel';
+import Prompt from '../ui/Prompt';
+import '../../styles/autocomplete.css';
 
 type AutoCompleteProps = {
   viewModel: AutoCompleteViewModel,
@@ -78,17 +78,7 @@ export default observer(({ viewModel } : AutoCompleteProps) => {
         {isOpen && (
           <ul className="prompt-list">
             {viewModel.searchResult.map(item =>
-              <li
-                key={item.id}
-                className="prompt-item"
-                onClick={() => handleSelectCountry(item.name)}
-              >
-                <Flag src={item.flag} />
-                <div className="prompt-text">
-                  <span className="prompt-text-name">{item.name}</span>
-                  <span className="prompt-text-full-name">{item.fullName}</span>
-                </div>
-              </li>
+              <Prompt key={item.id} prompt={item} selectCountry={handleSelectCountry} />
             )}
           </ul>
         )}

@@ -1,8 +1,8 @@
 import React from "react";
 import TextControlViewModel from './viewmodels/TextControlViewModel';
 import AutoCompleteViewModel from './viewmodels/AutoCompleteViewModel';
-import AutoComplete from "./components/AutoComplete";
-import TextControl from "./components/TextControl";
+import AutoComplete from "./components/controls/AutoComplete";
+import TextControl from "./components/controls/TextControl";
 import { CONTENT_TYPE } from './utils/constants';
 import "./App.css";
 
