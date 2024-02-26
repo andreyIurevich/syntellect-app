@@ -1,4 +1,6 @@
 import React, { ChangeEvent } from 'react';
+
+// import styles
 import '../../styles/textAreaCtrl.css';
 
 type TextAreaProps = {

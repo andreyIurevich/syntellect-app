@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { observer } from 'mobx-react';
 import TextControlViewModel from '../../viewmodels/TextControlViewModel';
-import TextAreaCtrl from '../ui/TextAreaCtrl';
-import Button from "../ui/Button";
-
 import { CONTENT_TYPE } from '../../utils/constants';
+
+// import UI-components
+import TextAreaCtrl from '../ui/TextAreaCtrl';
+import Button from '../ui/Button';
 
 type TextAreaCtrlProps = {
   viewModel: TextControlViewModel

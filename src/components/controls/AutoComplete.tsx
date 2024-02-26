@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
-import { useDebounce } from "../../utils/helpers";
+import { useDebounce } from '../../utils/helpers';
 import AutoCompleteViewModel from '../../viewmodels/AutoCompleteViewModel';
+
+// import UI-components
 import Prompt from '../ui/Prompt';
+
+// import styles
 import '../../styles/autocomplete.css';
 
 type AutoCompleteProps = {

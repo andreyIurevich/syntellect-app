@@ -1,6 +1,7 @@
 import React from 'react';
 import defaultFlag from '../../assets/defaultFlag.png';
 
+// import styles
 import '../../styles/flag.css';
 
 type FlagProps = {

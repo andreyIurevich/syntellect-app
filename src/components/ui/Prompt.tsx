@@ -1,5 +1,7 @@
 import React from 'react';
 import { CountryInfo } from '../../services/serverResponseInterface';
+
+// import UI-components
 import Flag from "./Flag";
 
 type PromptProps = {

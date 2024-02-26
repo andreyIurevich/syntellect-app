@@ -1,4 +1,6 @@
 import React from 'react';
+
+// import styles
 import '../../styles/button.css';
 
 type ButtonProps = {
